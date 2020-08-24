@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block main %}
+
+
+<div class="row recuo-vertical">
+    <div class="col">
+        <h2>Atualizar Cliente: {{ cliente }}</h2>
+
+        <form action="{% url 'client_cliente_update' cliente.id %}" method="post">
+            {% csrf_token %}
+
+
+        <p>
+          <a class="btn btn-outline-info" data-toggle="collapse" href="#infoCliente" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Informações da Empresa
+          </a>
+        </p>
+        <div class="collapse" id="infoCliente">
+            <table>
+                <tr>
+                    <td>{{ form.nome|as_crispy_field }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.endereco|as_crispy_field }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.telefone|as_crispy_field }}</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <button type="submit" class= "btn btn-outline-success btn-sm m-0">
+            Atualizar</button>
+        <a href="{% url 'client_cliente_delete' cliente.id %}"
+           class="btn btn-outline-danger btn-sm m-0">
+            Deletar</a>
+      </form>
+    </div>
+</div>
+
+{% endblock %}
