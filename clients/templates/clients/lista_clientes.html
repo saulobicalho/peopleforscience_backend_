@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+
+<div class="row recuo-vertical">
+    <div class="col-sm-6">
+        <h1>Lista de Clientes</h1>
+        {% if clientes %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                        <th scope="row">{{ cliente.id }}</th>
+                        <td>{{ cliente.nome }}</td>
+                        <td><a class="btn btn-outline-info btn-sm m-0"
+                               href="{% url 'client_cliente_detail' cliente.id %}">
+                               Detalhes</a></td>
+                        <td><a class="btn btn-outline-info btn-sm m-0"
+                               href="{% url 'client_cliente_update' cliente.id %}">
+                               Atualizar</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% else %}
+            <p>Não há clientes cadastrados no banco de dados.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
