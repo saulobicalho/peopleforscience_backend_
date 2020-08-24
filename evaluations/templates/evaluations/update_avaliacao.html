@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block main %}
+
+
+<div class="row recuo-vertical">
+    <div class="col">
+        <h2>Atualizar Avaliacao: {{ avaliacao }}</h2>
+
+        <form action="{% url 'evaluations_avaliacao_update' avaliacao.id %}" method="post">
+            {% csrf_token %}
+
+        <p>
+          <a class="btn btn-outline-info" data-toggle="collapse" href="#infoAvaliacao" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Informações da Avaliacao
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#legal" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Legal
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#assesment" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Assesment - Diagnostico
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#orgproc" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Organização e Processo
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#riscseg" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Risco e Segurança
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#govpriv" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Governança da Privacidade
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#bi" role="button" aria-expanded="false" aria-controls="collapseExample">
+            B.I.
+          </a>
+        </p>
+        <div class="collapse" id="infoAvaliacao">
+          <table>
+            <tr>
+              <td>{{ form.projeto|as_crispy_field }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.avaliador|as_crispy_field }}</td>
+            </tr>
+            <tr>
+              <td>{{ form.status|as_crispy_field }}</td>
+            </tr>
+
+          </table>
+        </div>
+
+        <button type="submit" class="btn btn-outline-success btn-sm m-0">Atualizar</button>
+        <a href="{% url 'evaluations_avaliacao_delete' avaliacao.id %}"
+            class="btn btn-outline-danger btn-sm m-0">Deletar</a>
+      </form>
+    </div>
+</div>
+
+{% endblock %}
