@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+<div class="row recuo-vertical">
+    <div class="col">
+
+        <img src="{% static 'img/difac-logo.png' %}" alt="PeopleForScience">
+        <h1>Seja Bem-Vindo ao Website!</h1>
+
+        <a href="{% url 'login' %}">Clique aqui para entrar</a>
+    </div>
+</div>
+{% endblock %}
