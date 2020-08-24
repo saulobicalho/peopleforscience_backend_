@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+
+
+    <div class="login recuo-vertical">
+      <div class="container login-bannerWrapper">
+
+        <a class="navbar-brand" href="{% url 'website_home' %}"><img src="{% static 'img/difac-logo-small.png' %}" alt="DifAcompanhamento"></a>
+        <h3>Login</h3>
+
+         {% if form.errors %}
+          <p>O seu nome de usuário ou senha são inválidos. Por favor tente novamente.</p>
+         {% endif %}
+
+         {% if next %}
+          {% if user.is_authenticated %}
+           <p>Sua conta não tem acesso ao sistema. Para proceder, por favor insira uma conta
+           com acesso válido.</p>
+          {% else %}
+           <p>Por favor logue para acessar o sistema.</p>
+          {% endif %}
+         {% endif %}
+
+        <div class="login-banner">
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+
+              <label>{{ form.username.label_tag }}</label>
+                {{ form.username }}
+
+              <label>{{ form.password.label_tag }}</label>
+                {{ form.password }}
+
+              {# Assumes you setup the password_reset view in your URLconf #}
+              <small class="form-text"><a href="{% url 'password_reset' %}">Esqueci minha senha</a></small>
+
+
+              <button type="submit" class="btn btn-primary" value="login">Fazer login</button>
+              <input type="hidden" name="next" value="{{ next }}">
+            </div>
+            </form>
+        </div>
+      </div>
+</div>
+{% endblock %}
