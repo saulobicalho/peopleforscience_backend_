@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="row recuo-vertical">
+    <div class="col">
+        <h2>Tem certeza que deseja deletar: {{ projeto }}</h2>
+
+        <form action="{% url 'core_projeto_delete' projeto.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-danger">Deletar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
