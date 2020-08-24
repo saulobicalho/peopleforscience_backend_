@@ -1,0 +1,40 @@
+.login, .register{
+  background-color: #FFF;
+  background-size: cover;
+  background-position:top center;
+  height: 100%;
+  width: 50%;
+  top: 50%;
+  left: 20%;
+  position: relative;
+  background-repeat: no-repeat;
+  color: black;
+}
+
+.login-form-input, {
+  width: 30%;
+}
+
+p{
+  text-align: justify;
+}
+
+.login-banner, .register-banner{
+    color: black;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 20 px;
+    width: 50%;
+    border-radius: 8px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.3s;
+}
+.recuo-vertical{
+    margin-top: 80px;
+}
+
+.area-label{
+    color: DarkCyan;
+}
