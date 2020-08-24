@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+
+
+<div class="row recuo-vertical">
+    <div class="col">
+        <h2>Detalhes Projeto: {{ projeto }}</h2>
+        <p>
+          <a class="btn btn-outline-info" data-toggle="collapse" href="#infoProjeto" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Informações do Projeto
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#legal" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Legal
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#assesment" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Assesment - Diagnostico
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#orgproc" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Organização e Processo
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#riscseg" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Risco e Segurança
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#govpriv" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Governança da Privacidade
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#bi" role="button" aria-expanded="false" aria-controls="collapseExample">
+            B.I.
+          </a>
+        </p>
+
+        <div class="collapse col-sm-6" id="infoProjeto">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                    <th scope="row">Id</th>
+                    <td>{{ projeto.id }}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <th scope="row">Nome do projeto</th>
+                    <td>{{ projeto.nome }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Status</th>
+                    <td>{{ projeto.status }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cliente</th>
+                    <td>{{ projeto.cliente }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nº de consultores</th>
+                    <td>{{ projeto.consultor.all.count }}</td>
+                </tr>
+                <tr>
+                    <th>Consultores associados ao projeto</th>
+                    <td>{% for item in projeto.consultor.all %}
+                            <p>{{ item }}</p>
+                        {% endfor %}</td>
+                </tr>
+
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

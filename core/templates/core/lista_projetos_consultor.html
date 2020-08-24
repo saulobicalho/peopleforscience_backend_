@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+<div class="row recuo-vertical">
+    <div class="col-sm-6">
+        <h1>Meus Projetos</h1>
+        {% if projetos %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for projeto in projetos %}
+                <tr>
+                        <th scope="row">{{ projeto.id }}</th>
+                        <td>{{ projeto.nome }}</td>
+                        <td><a class="btn btn-outline-info btn-sm m-0"
+                               href="{% url 'core_projeto_detail' projeto.id %}">
+                                    Detalhes</a></td>
+                        <td><a class="btn btn-outline-info btn-sm m-0"
+                               href="{% url 'core_projeto_update' projeto.id %}">
+                                    Atualizar</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% else %}
+            <p>Não há projetos cadastrados no banco de dados.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
