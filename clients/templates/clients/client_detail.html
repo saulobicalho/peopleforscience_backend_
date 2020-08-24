@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+
+
+<div class="row recuo-vertical">
+    <div class="col">
+        <h2>Detalhes Cliente: {{ cliente }}</h2>
+        <p>
+          <a class="btn btn-outline-info" data-toggle="collapse" href="#infoCliente" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Informações da Empresa
+          </a>
+          <a class="btn btn-info" data-toggle="collapse" href="#projCliente" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Projetos do cliente
+          </a>
+        </p>
+        <div class="collapse col-sm-6" id="infoCliente">
+            <label>Informações Básicas do Cliente</label>
+            <table class="table table-bordered">
+              <thead >
+                <tr>
+                    <th scope="row">Id</th>
+                    <td>{{ cliente.id }}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <th scope="row">Nome do Cliente</th>
+                    <td>{{ cliente.nome }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Endereço</th>
+                    <td>{{ cliente.endereco }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Telefone</th>
+                    <td>{{ cliente.telefone }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="collapse col-sm-6" id="projCliente">
+            <div class="col-sm-6">
+                <label>Projetos do Cliente</label>
+                {% if cliente.projeto_contratado %}
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">id</th>
+                          <th scope="col">Nome</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for projeto in projetos_cliente %}
+                        <tr>
+                                <th scope="row">{{ projeto.id }}</th>
+                                <td>{{ projeto.nome }}</td>
+                                <td><a class="btn btn-outline-info btn-sm m-0"
+                                       href="{% url 'core_projeto_detail' projeto.id %}">
+                                            Detalhes</a></td>
+                                <td><a class="btn btn-outline-info btn-sm m-0"
+                                       href="{% url 'core_projeto_update' projeto.id %}">
+                                            Atualizar</a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                {% else %}
+                    <p>Não há projetos cadastrados no banco de dados para o cliente {{ cliente.nome }}.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<div class="row recuo-vertical">
+    <div class="col-sm-6">
+        <h3>Cadastrar Cliente</h3>
+        <form action="{% url 'client_cliente_novo' %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.nome|as_crispy_field }}</td>
+                <tr>
+                    <td>{{ form.endereco|as_crispy_field }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.telefone|as_crispy_field }}</td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
